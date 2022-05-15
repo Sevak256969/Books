@@ -5,13 +5,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "publisher")
 public class PublisherEntity {
-
     @Id
     @GeneratedValue( strategy= GenerationType.AUTO )
     private Integer id;
     private String publisher;
     private String publisherCode;
-
 
     public PublisherEntity(){}
 
@@ -24,23 +22,18 @@ public class PublisherEntity {
     public Integer getId() {
         return id;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }
-
     public String getPublisher() {
         return publisher;
     }
-
     public void setPublisher(String publisher) {
         this.publisher = publisher;
     }
-
     public String getPublisherCode() {
         return publisherCode;
     }
-
     public void setPublisherCode(String publisherCode) {
         this.publisherCode = publisherCode;
     }

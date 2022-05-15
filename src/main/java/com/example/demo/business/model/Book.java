@@ -1,17 +1,19 @@
-package com.example.demo.application.dto;
+package com.example.demo.business.model;
 
-//@Getter
-//@NoArgsConstructor
-public class BooksDto {
+public class Book {
 
-    private Integer id;
-    private String author;
-    private String name;
-    private Integer yearWhenWritten;
-    private Integer numberOfPages;
-    private String genre;
+    private  Integer id;
+    private  String author;
+    private  String name;
+    private  Integer yearWhenWritten;
+    private  Integer numberOfPages;
+    private  String genre;
 
-    public BooksDto(Integer id, String author, String name, Integer yearWhenWritten, Integer numberOfPages, String genre) {
+    public Book() {
+
+    }
+
+    public Book(Integer id, String author, String name, Integer yearWhenWritten, Integer numberOfPages, String genre) {
         this.id = id;
         this.author = author;
         this.name = name;
@@ -19,55 +21,39 @@ public class BooksDto {
         this.numberOfPages = numberOfPages;
         this.genre = genre;
     }
-
-    public BooksDto(){
-
-    }
-
     public Integer getId() {
         return id;
     }
-
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
-
     public String getAuthor() {
         return author;
     }
-
     public void setAuthor(String author) {
         this.author = author;
     }
-
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public Integer getYearWhenWritten() {
         return yearWhenWritten;
     }
-
-    public void setYearWhenWritten(Integer yearWhenWritten) {
+    public void setYearWhenWritten(int yearWhenWritten) {
         this.yearWhenWritten = yearWhenWritten;
     }
-
     public Integer getNumberOfPages() {
         return numberOfPages;
     }
-
-    public void setNumberOfPages(Integer numberOfPages) {
+    public void setNumberOfPages(int numberOfPages) {
         this.numberOfPages = numberOfPages;
     }
-
     public String getGenre() {
         return genre;
     }
-
     public void setGenre(String genre) {
         this.genre = genre;
     }

@@ -1,7 +1,5 @@
 package com.example.demo.application.dto;
 
-//@Data
-//@NoArgsConstructor
 public class PublicationDto {
 
     private Integer id;
@@ -22,31 +20,24 @@ public class PublicationDto {
     public Integer getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
-
     public Integer getPublicationYear() {
         return publicationYear;
     }
-
     public void setPublicationYear(int publicationYear) {
         this.publicationYear = publicationYear;
     }
-
     public Integer getRating() {
         return rating;
     }
-
     public void setRating(int rating) {
         this.rating = rating;
     }
-
     public String getLanguage() {
         return language;
     }
-
     public void setLanguage(String language) {
         this.language = language;
     }
