@@ -1,8 +1,6 @@
 package com.example.demo.application.controller;
 
-import com.example.demo.application.dto.NewPublisherDto;
 import com.example.demo.application.dto.PublisherDto;
-import com.example.demo.business.model.NewPublisher;
 import com.example.demo.business.model.Publisher;
 import com.example.demo.business.service.PublisherService;
 import org.modelmapper.ModelMapper;
@@ -41,14 +39,14 @@ public class PublisherController {
     }
 
     @PostMapping
-    public PublisherDto createPublisher(@RequestBody @Valid NewPublisherDto publisherDto){
-        NewPublisher publisher = modelMapper.map(publisherDto, NewPublisher.class);
+    public PublisherDto createPublisher(@RequestBody @Valid PublisherDto publisherDto){
+        Publisher publisher = modelMapper.map(publisherDto, Publisher.class);
         Publisher publisher2 = publisherService.createPublisher(publisher);
         return modelMapper.map(publisher2, PublisherDto.class);
     }
 
     @PutMapping("/{id}")
-    public PublisherDto updatePublisher(@RequestBody NewPublisherDto publisherDto, @PathVariable("id") Integer id){
+    public PublisherDto updatePublisher(@RequestBody PublisherDto publisherDto, @PathVariable("id") Integer id){
         Publisher publisher = modelMapper.map(publisherDto, Publisher.class);
         Publisher publisher2 = publisherService.updatePublisher(id, publisher);
         return modelMapper.map(publisher2, PublisherDto.class);

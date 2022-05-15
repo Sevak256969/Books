@@ -2,7 +2,6 @@ package com.example.demo.business.service.impl;
 
 import com.example.demo.business.exception.BookRuntimeException;
 import com.example.demo.business.model.Book;
-import com.example.demo.business.model.NewBook;
 import com.example.demo.business.service.BooksService;
 import com.example.demo.data.entity.BooksEntity;
 import com.example.demo.data.repository.BooksRepository;
@@ -17,30 +16,22 @@ import java.util.stream.Collectors;
 public class BooksServiceImpl implements BooksService {
     @Autowired
     private BooksRepository booksRepo;
-
     @Autowired
     private ModelMapper modelMapper;
 
-//    public BooksServiceImpl(BooksRepository booksRepo, ModelMapper modelMapper) {
-//        this.booksRepo = booksRepo;
-//        this.modelMapper = modelMapper;
-//    }
-
     @Override
     public List<Book> getAllBooks()  {
-//throw new RuntimeException("you misspelled");
+    //throw new RuntimeException("you misspelled");
     try{
         List<Book> books  = booksRepo.findAll()
                 .stream()
                 .map(booksEntity -> modelMapper.map(booksEntity, Book.class))
                 .collect(Collectors.toList());
-
         return  books;
     }
     catch (RuntimeException e){
         throw new BookRuntimeException("lalala", e);
     }
-
     }
 
     @Override
@@ -50,7 +41,7 @@ public class BooksServiceImpl implements BooksService {
     }
 
     @Override
-    public Book createBooks(NewBook books) {
+    public Book createBooks(Book books) {
         try{
             BooksEntity booksEntity = modelMapper.map(books, BooksEntity.class);
             BooksEntity booksEntity2 = booksRepo.save(booksEntity);
@@ -58,7 +49,6 @@ public class BooksServiceImpl implements BooksService {
         }catch(Exception e){
             throw new BookRuntimeException("ttt", e);
         }
-
     }
 
     @Override
@@ -71,7 +61,6 @@ public class BooksServiceImpl implements BooksService {
 
     @Override
     public void deleteBooks(Integer id) {
-
        booksRepo.deleteById(id);
     }
 }

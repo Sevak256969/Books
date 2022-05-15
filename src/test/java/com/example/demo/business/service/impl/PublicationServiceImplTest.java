@@ -1,7 +1,6 @@
 package com.example.demo.business.service.impl;
 
 import com.example.demo.business.exception.PublicationRuntimeException;
-import com.example.demo.business.model.NewPublication;
 import com.example.demo.business.model.Publication;
 import com.example.demo.business.service.PublicationService;
 import com.example.demo.data.entity.PublicationEntity;
@@ -92,7 +91,7 @@ public class PublicationServiceImplTest {
     @Test
     public void create_employee_exception() {
 
-        NewPublication publication = new NewPublication(1922,123,"Arm");
+        Publication publication = new Publication(1,1922,123,"Arm");
         PublicationEntity publicationEntity = new PublicationEntity( 1,1922,123,"Arm");
         when(modelMapper.map(any(), any())).thenReturn(publicationEntity);
         when(publicationRepo.save(any())).thenThrow(RuntimeException.class);
@@ -105,15 +104,15 @@ public class PublicationServiceImplTest {
     @Test
     public void create_publication_ok() {
 
-        NewPublication newPublication = new NewPublication(1922, 123, "Arm");
-        PublicationEntity publicationEntity = modelMapper.map(newPublication, PublicationEntity.class);
         Publication publication = new Publication(1,1922, 123, "Arm");
+        PublicationEntity publicationEntity = modelMapper.map(publication, PublicationEntity.class);
+        Publication publication1 = new Publication(1,1922, 123, "Arm");
 
         when(publicationRepo.save(publicationEntity)).thenReturn(publicationEntity);
-        when(modelMapper.map(newPublication, PublicationEntity.class)).thenReturn(publicationEntity);
-        when(modelMapper.map(publicationEntity, Publication.class)).thenReturn(publication);
+        when(modelMapper.map(publication, PublicationEntity.class)).thenReturn(publicationEntity);
+        when(modelMapper.map(publicationEntity, Publication.class)).thenReturn(publication1);
 
-        Publication publication2 = publicationService.createPublication(newPublication);
+        Publication publication2 = publicationService.createPublication(publication);
 
         assertEquals(1, publication2.getId());
         assertEquals(1922, publication2.getPublicationYear());
@@ -126,15 +125,15 @@ public class PublicationServiceImplTest {
     @Test
     public void update_publication_ok() {
 
-        NewPublication newPublication = new NewPublication(1922, 123, "Arm");
-        PublicationEntity publicationEntity = modelMapper.map(newPublication, PublicationEntity.class);
         Publication publication = new Publication(1,1922, 123, "Arm");
+        PublicationEntity publicationEntity = modelMapper.map(publication, PublicationEntity.class);
+        Publication publication1 = new Publication(1,1922, 123, "Arm");
 
         when(publicationRepo.save(publicationEntity)).thenReturn(publicationEntity);
-        when(modelMapper.map(newPublication,PublicationEntity.class)).thenReturn(publicationEntity);
-        when(modelMapper.map(publicationEntity,Publication.class)).thenReturn(publication);
+        when(modelMapper.map(publication,PublicationEntity.class)).thenReturn(publicationEntity);
+        when(modelMapper.map(publicationEntity,Publication.class)).thenReturn(publication1);
 
-        Publication publication2 = publicationService.updatePublication(1, publication);
+        Publication publication2 = publicationService.updatePublication(1, publication1);
 
         assertEquals(1, publication2.getId());
         assertEquals(1922, publication2.getPublicationYear());

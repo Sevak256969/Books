@@ -2,7 +2,6 @@ package com.example.demo.business.service.impl;
 
 import com.example.demo.business.exception.BookRuntimeException;
 import com.example.demo.business.model.Book;
-import com.example.demo.business.model.NewBook;
 import com.example.demo.business.service.BooksService;
 import com.example.demo.data.entity.BooksEntity;
 import com.example.demo.data.repository.BooksRepository;
@@ -59,8 +58,8 @@ public class BookServiceImplTest {
         when(modelMapper.map(books2, Book.class)).thenReturn(books6);
         when(modelMapper.map(books3, Book.class)).thenReturn(books7);
         when(modelMapper.map(books4, Book.class)).thenReturn(books8);
-
-//        test- call the method that u test
+        
+        // test- call the method that u test
         List<Book> booksList = booksService.getAllBooks();
 
         //assertion - validate the results
@@ -96,7 +95,7 @@ public class BookServiceImplTest {
     @Test
     public void test_create_books_exception() {
 
-        NewBook books = new NewBook("Ashot","Shun",1922,123,"Poem");
+        Book books = new Book(1,"Ashot","Shun",1922,123,"Poem");
         BooksEntity b = new BooksEntity(1, "Ashot","Shun",1922,123,"Poem");
         when(modelMapper.map(any(), any())).thenReturn(b);
         when(booksRepo.save(any())).thenThrow(RuntimeException.class);
@@ -109,7 +108,7 @@ public class BookServiceImplTest {
     @Test
     public void create_books_ok() {
 
-        NewBook books = new NewBook("Ashot","Shun",1922,123,"Poem");
+        Book books = new Book(1,"Ashot","Shun",1922,123,"Poem");
         BooksEntity booksEntity = new ModelMapper().map(books, BooksEntity.class);
         Book books2 = new Book(1,"Ashot","Shun",1922,123,"Poem");
 

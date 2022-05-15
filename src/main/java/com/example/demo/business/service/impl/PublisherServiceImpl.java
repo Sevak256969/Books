@@ -1,7 +1,6 @@
 package com.example.demo.business.service.impl;
 
 import com.example.demo.business.exception.PublisherRuntimeException;
-import com.example.demo.business.model.NewPublisher;
 import com.example.demo.business.model.Publisher;
 import com.example.demo.business.service.PublisherService;
 import com.example.demo.data.entity.PublisherEntity;
@@ -18,7 +17,6 @@ import java.util.stream.Collectors;
 public class PublisherServiceImpl implements PublisherService {
     @Autowired
     private PublisherRepository publisherRepo;
-
     @Autowired
     private ModelMapper modelMapper;
 
@@ -37,7 +35,7 @@ public class PublisherServiceImpl implements PublisherService {
     }
 
     @Override
-    public Publisher createPublisher(NewPublisher publisher) {
+    public Publisher createPublisher(Publisher publisher) {
         try {
             PublisherEntity publisherEntity = modelMapper.map(publisher, PublisherEntity.class);
             PublisherEntity publisherEntity2 = publisherRepo.save(publisherEntity);
@@ -45,7 +43,6 @@ public class PublisherServiceImpl implements PublisherService {
         } catch (Exception e) {
             throw new PublisherRuntimeException("Eee", e);
         }
-
     }
 
     @Override
@@ -58,7 +55,6 @@ public class PublisherServiceImpl implements PublisherService {
 
     @Override
     public void deletePublisher(Integer id) {
-
         publisherRepo.deleteById(id);
     }
 }

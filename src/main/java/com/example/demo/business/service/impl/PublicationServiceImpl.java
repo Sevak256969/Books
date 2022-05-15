@@ -1,7 +1,6 @@
 package com.example.demo.business.service.impl;
 
 import com.example.demo.business.exception.PublicationRuntimeException;
-import com.example.demo.business.model.NewPublication;
 import com.example.demo.business.model.Publication;
 import com.example.demo.business.service.PublicationService;
 import com.example.demo.data.entity.PublicationEntity;
@@ -18,7 +17,6 @@ import java.util.stream.Collectors;
 public class PublicationServiceImpl implements PublicationService {
     @Autowired
     private PublicationRepository publicationRepo;
-
     @Autowired
     private ModelMapper modelMapper;
 
@@ -37,7 +35,7 @@ public class PublicationServiceImpl implements PublicationService {
     }
 
     @Override
-    public Publication createPublication(NewPublication publication) {
+    public Publication createPublication(Publication publication) {
         try {
             PublicationEntity publicationEntity = modelMapper.map(publication, PublicationEntity.class);
             PublicationEntity publicationEntity2 = publicationRepo.save(publicationEntity);
@@ -45,7 +43,6 @@ public class PublicationServiceImpl implements PublicationService {
         } catch (Exception e) {
             throw new PublicationRuntimeException("Eee", e);
         }
-
     }
 
     @Override
@@ -58,7 +55,6 @@ public class PublicationServiceImpl implements PublicationService {
 
     @Override
     public void deletePublication(Integer id) {
-
         publicationRepo.deleteById(id);
     }
 }

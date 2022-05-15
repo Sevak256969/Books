@@ -1,9 +1,7 @@
 package com.example.demo.application.controller;
 
 import com.example.demo.application.dto.BookDto;
-import com.example.demo.application.dto.NewBookDto;
 import com.example.demo.business.model.Book;
-import com.example.demo.business.model.NewBook;
 import com.example.demo.business.service.BooksService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,13 +38,13 @@ public class BooksController {
 
     @PostMapping
     public BookDto createBook(@RequestBody @Valid BookDto bookDto){
-        NewBook book = modelMapper.map(bookDto, NewBook.class);
+        Book book = modelMapper.map(bookDto, Book.class);
         Book book2 = booksService.createBooks(book);
         return modelMapper.map(book2, BookDto.class);
     }
 
     @PutMapping("/{id}")
-    public BookDto updateBook(@RequestBody  NewBookDto bookDto, @PathVariable("id") Integer id){
+    public BookDto updateBook(@RequestBody  BookDto bookDto, @PathVariable("id") Integer id){
         Book book = modelMapper.map(bookDto, Book.class);
         Book book2 = booksService.updateBooks(id, book);
         return modelMapper.map(book2, BookDto.class);

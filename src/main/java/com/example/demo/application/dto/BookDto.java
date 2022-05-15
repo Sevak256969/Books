@@ -1,9 +1,6 @@
 package com.example.demo.application.dto;
 
-//@Getter
-//@NoArgsConstructor
 public class BookDto {
-
     private Integer id;
     private String author;
     private String name;
@@ -11,7 +8,7 @@ public class BookDto {
     private Integer numberOfPages;
     private String genre;
 
-    public BookDto(Integer id, String author, String name, Integer yearWhenWritten, Integer numberOfPages, String genre) {
+    public BookDto(Integer id, String author, String name,Integer yearWhenWritten, Integer numberOfPages,String genre) {
         this.id = id;
         this.author = author;
         this.name = name;
