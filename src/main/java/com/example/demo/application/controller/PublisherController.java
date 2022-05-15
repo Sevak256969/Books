@@ -20,10 +20,8 @@ public class PublisherController {
 
     @Autowired
     private PublisherService publisherService;
-
     @Autowired
     private ModelMapper modelMapper;
-
     @GetMapping
     public List<PublisherDto> getPublisher() {
 
@@ -43,7 +41,7 @@ public class PublisherController {
     }
 
     @PostMapping
-    public PublisherDto creatPublisher(@RequestBody @Valid NewPublisherDto publisherDto){
+    public PublisherDto createPublisher(@RequestBody @Valid NewPublisherDto publisherDto){
         NewPublisher publisher = modelMapper.map(publisherDto, NewPublisher.class);
         Publisher publisher2 = publisherService.createPublisher(publisher);
         return modelMapper.map(publisher2, PublisherDto.class);

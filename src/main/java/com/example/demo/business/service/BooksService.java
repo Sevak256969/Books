@@ -1,20 +1,20 @@
 package com.example.demo.business.service;
 
-import com.example.demo.business.model.Books;
-import com.example.demo.business.model.NewBooks;
+import com.example.demo.business.model.Book;
+import com.example.demo.business.model.NewBook;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface BooksService {
 
-    List<Books> getAllBooks();
+    List<Book> getAllBooks();
 
-    Optional<Books> getBooksById(Integer id);
+    Optional<Book> getBooksById(Integer id);
 
-    Books createBooks(NewBooks books);
+    Book createBooks(NewBook books);
 
-    Books updateBooks(Integer id, Books books);
+    Book updateBooks(Integer id, Book books);
 
     void deleteBooks(Integer id);
 

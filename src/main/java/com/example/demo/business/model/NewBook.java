@@ -1,32 +1,23 @@
 package com.example.demo.business.model;
 
-public class Books {
+public class NewBook {
 
-    private  Integer id;
     private  String author;
     private  String name;
     private  Integer yearWhenWritten;
     private  Integer numberOfPages;
     private  String genre;
 
-    public Books() {
+    public NewBook() {
 
     }
 
-    public Books(Integer id, String author, String name, Integer yearWhenWritten, Integer numberOfPages, String genre) {
-        this.id = id;
+    public NewBook(String author, String name, Integer yearWhenWritten, Integer numberOfPages, String genre) {
         this.author = author;
         this.name = name;
         this.yearWhenWritten = yearWhenWritten;
         this.numberOfPages = numberOfPages;
         this.genre = genre;
-    }
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getAuthor() {

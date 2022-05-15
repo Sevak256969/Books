@@ -43,7 +43,7 @@ public class PublicationController {
     }
 
     @PostMapping
-    public PublicationDto creatPublication(@RequestBody @Valid NewPublicationDto publicationDto){
+    public PublicationDto createPublication(@RequestBody @Valid NewPublicationDto publicationDto){
         NewPublication publication = modelMapper.map(publicationDto, NewPublication.class);
         Publication publication2 = publicationService.createPublication(publication);
         return modelMapper.map(publication2, PublicationDto.class);

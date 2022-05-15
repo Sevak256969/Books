@@ -1,9 +1,9 @@
 package com.example.demo.application.controller;
 
-import com.example.demo.application.dto.BooksDto;
+import com.example.demo.application.dto.BookDto;
 import com.example.demo.application.dto.NewBookDto;
-import com.example.demo.business.model.Books;
-import com.example.demo.business.model.NewBooks;
+import com.example.demo.business.model.Book;
+import com.example.demo.business.model.NewBook;
 import com.example.demo.business.service.BooksService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,41 +18,38 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/books")
 public class BooksController {
-
     @Autowired
     private BooksService booksService;
-
     @Autowired
     private ModelMapper modelMapper;
-
     @GetMapping
-    public List<BooksDto> getBooks() {
+    public List<BookDto> getBooks() {
 
-        List<BooksDto> booksList = booksService.getAllBooks()
+        List<BookDto> booksList = booksService.getAllBooks()
                 .stream()
-                .map(book -> modelMapper.map(book, BooksDto.class))
+                .map(book -> modelMapper.map(book, BookDto.class))
                 .collect(Collectors.toList());
 
         return booksList;
     }
 
     @GetMapping(value = "/{id}")
-    public Optional<BooksDto> getBookById(@PathVariable("id") Integer id) {
-        return booksService.getBooksById(id).map(booksEntity -> modelMapper.map(booksEntity, BooksDto.class));
+    public Optional<BookDto> getBookById(@PathVariable("id") Integer id) {
+        return booksService.getBooksById(id).map(booksEntity -> modelMapper.map(booksEntity, BookDto.class));
     }
 
     @PostMapping
-    public BooksDto creatBook(@RequestBody @Valid NewBookDto bookDto){
-        NewBooks book = modelMapper.map(bookDto, NewBooks.class);
-        Books book2 = booksService.createBooks(book);
-        return modelMapper.map(book2, BooksDto.class);
+    public BookDto createBook(@RequestBody @Valid BookDto bookDto){
+        NewBook book = modelMapper.map(bookDto, NewBook.class);
+        Book book2 = booksService.createBooks(book);
+        return modelMapper.map(book2, BookDto.class);
     }
 
     @PutMapping("/{id}")
-    public BooksDto updateBook(@RequestBody  NewBookDto bookDto, @PathVariable("id") Integer id){
-        Books book = modelMapper.map(bookDto, Books.class);
-        Books book2 = booksService.updateBooks(id, book);
-        return modelMapper.map(book2, BooksDto.class);
+    public BookDto updateBook(@RequestBody  NewBookDto bookDto, @PathVariable("id") Integer id){
+        Book book = modelMapper.map(bookDto, Book.class);
+        Book book2 = booksService.updateBooks(id, book);
+        return modelMapper.map(book2, BookDto.class);
     }
 
     @DeleteMapping("/{id}")

@@ -29,10 +29,8 @@ public class PublicationServiceImplTest {
 
     @Mock
     private PublicationRepository publicationRepo;
-
     @Mock
     private ModelMapper modelMapper;
-
     @InjectMocks
     private PublicationService publicationService = new PublicationServiceImpl();
 

@@ -1,8 +1,8 @@
 package com.example.demo.business.service.impl;
 
 import com.example.demo.business.exception.BookRuntimeException;
-import com.example.demo.business.model.Books;
-import com.example.demo.business.model.NewBooks;
+import com.example.demo.business.model.Book;
+import com.example.demo.business.model.NewBook;
 import com.example.demo.business.service.BooksService;
 import com.example.demo.data.entity.BooksEntity;
 import com.example.demo.data.repository.BooksRepository;
@@ -49,24 +49,24 @@ public class BookServiceImplTest {
         books.add(books3);
         books.add(books4);
 
-        Books books5 = new Books(1,"Ashot","Shun",1922,123,"Poem");
-        Books books6 = new Books(2,"Karen","Cat",1234,789,"Poem");
-        Books books7 = new Books(3,"Sevak","gdghdh",1899,67,"Poem");
-        Books books8 = new Books(4,"Aren","dgdg",1345,56,"Poem");
+        Book books5 = new Book(1,"Ashot","Shun",1922,123,"Poem");
+        Book books6 = new Book(2,"Karen","Cat",1234,789,"Poem");
+        Book books7 = new Book(3,"Sevak","gdghdh",1899,67,"Poem");
+        Book books8 = new Book(4,"Aren","dgdg",1345,56,"Poem");
 
         when(booksRepo.findAll()).thenReturn(books);
-        when(modelMapper.map(books1, Books.class)).thenReturn(books5);
-        when(modelMapper.map(books2, Books.class)).thenReturn(books6);
-        when(modelMapper.map(books3, Books.class)).thenReturn(books7);
-        when(modelMapper.map(books4, Books.class)).thenReturn(books8);
+        when(modelMapper.map(books1, Book.class)).thenReturn(books5);
+        when(modelMapper.map(books2, Book.class)).thenReturn(books6);
+        when(modelMapper.map(books3, Book.class)).thenReturn(books7);
+        when(modelMapper.map(books4, Book.class)).thenReturn(books8);
 
 //        test- call the method that u test
-        List<Books> booksList = booksService.getAllBooks();
+        List<Book> booksList = booksService.getAllBooks();
 
         //assertion - validate the results
         assertEquals(4, booksList.size());
 
-        Books book = booksList.get(0);
+        Book book = booksList.get(0);
         assertEquals(books1.getId(), book.getId());
         assertEquals("Ashot", book.getAuthor());
         assertEquals("Shun", book.getName());
@@ -80,12 +80,12 @@ public class BookServiceImplTest {
     @Test
     public void get_books_by_id_ok() {
         BooksEntity booksEntity = new BooksEntity(1,"Ashot","Shun",1922,123,"Poem");
-        Books books = new Books(1, "Ashot","Shun",1922,123,"Poem");
+        Book books = new Book(1, "Ashot","Shun",1922,123,"Poem");
 
         when(booksRepo.findById(1)).thenReturn(Optional.of(booksEntity));
-        when(modelMapper.map(any(), any())).thenReturn(books,Books.class);
+        when(modelMapper.map(any(), any())).thenReturn(books, Book.class);
 
-        Optional<Books> book = booksService.getBooksById(1);
+        Optional<Book> book = booksService.getBooksById(1);
 
         assertTrue(book.isPresent());
         assertEquals(1, book.get().getId());
@@ -96,7 +96,7 @@ public class BookServiceImplTest {
     @Test
     public void test_create_books_exception() {
 
-        NewBooks books = new NewBooks("Ashot","Shun",1922,123,"Poem");
+        NewBook books = new NewBook("Ashot","Shun",1922,123,"Poem");
         BooksEntity b = new BooksEntity(1, "Ashot","Shun",1922,123,"Poem");
         when(modelMapper.map(any(), any())).thenReturn(b);
         when(booksRepo.save(any())).thenThrow(RuntimeException.class);
@@ -109,15 +109,15 @@ public class BookServiceImplTest {
     @Test
     public void create_books_ok() {
 
-        NewBooks books = new NewBooks("Ashot","Shun",1922,123,"Poem");
+        NewBook books = new NewBook("Ashot","Shun",1922,123,"Poem");
         BooksEntity booksEntity = new ModelMapper().map(books, BooksEntity.class);
-        Books books2 = new Books(1,"Ashot","Shun",1922,123,"Poem");
+        Book books2 = new Book(1,"Ashot","Shun",1922,123,"Poem");
 
         when(booksRepo.save(booksEntity)).thenReturn(booksEntity);
         when(modelMapper.map(books, BooksEntity.class)).thenReturn(booksEntity);
-        when(modelMapper.map(booksEntity, Books.class)).thenReturn(books2);
+        when(modelMapper.map(booksEntity, Book.class)).thenReturn(books2);
 
-        Books book = booksService.createBooks(books);
+        Book book = booksService.createBooks(books);
 
         assertEquals(1, book.getId());
         assertEquals("Ashot", book.getAuthor());
@@ -132,15 +132,15 @@ public class BookServiceImplTest {
     @Test
     public void update_books_ok() {
 
-        Books books = new Books(1,"Ashot","Shun",1922,123,"Poem");
+        Book books = new Book(1,"Ashot","Shun",1922,123,"Poem");
         BooksEntity booksEntity = new ModelMapper().map(books, BooksEntity.class);
-        Books books2 = new Books(1,"Ashot","Shun",1922,123,"Poem");
+        Book books2 = new Book(1,"Ashot","Shun",1922,123,"Poem");
 
         when(booksRepo.save(booksEntity)).thenReturn(booksEntity);
         when(modelMapper.map(books, BooksEntity.class)).thenReturn(booksEntity);
-        when(modelMapper.map(booksEntity, Books.class)).thenReturn(books2);
+        when(modelMapper.map(booksEntity, Book.class)).thenReturn(books2);
 
-        Books book = booksService.updateBooks(1,books);
+        Book book = booksService.updateBooks(1,books);
 
         assertEquals(1, book.getId());
         assertEquals("Ashot", book.getAuthor());

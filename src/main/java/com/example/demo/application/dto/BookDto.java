@@ -1,23 +1,35 @@
-package com.example.demo.business.model;
+package com.example.demo.application.dto;
 
-public class NewBooks {
+//@Getter
+//@NoArgsConstructor
+public class BookDto {
 
-    private  String author;
-    private  String name;
-    private  Integer yearWhenWritten;
-    private  Integer numberOfPages;
-    private  String genre;
+    private Integer id;
+    private String author;
+    private String name;
+    private Integer yearWhenWritten;
+    private Integer numberOfPages;
+    private String genre;
 
-    public NewBooks() {
-
-    }
-
-    public NewBooks(String author, String name, Integer yearWhenWritten, Integer numberOfPages, String genre) {
+    public BookDto(Integer id, String author, String name, Integer yearWhenWritten, Integer numberOfPages, String genre) {
+        this.id = id;
         this.author = author;
         this.name = name;
         this.yearWhenWritten = yearWhenWritten;
         this.numberOfPages = numberOfPages;
         this.genre = genre;
+    }
+
+    public BookDto(){
+
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getAuthor() {
@@ -40,7 +52,7 @@ public class NewBooks {
         return yearWhenWritten;
     }
 
-    public void setYearWhenWritten(int yearWhenWritten) {
+    public void setYearWhenWritten(Integer yearWhenWritten) {
         this.yearWhenWritten = yearWhenWritten;
     }
 
@@ -48,7 +60,7 @@ public class NewBooks {
         return numberOfPages;
     }
 
-    public void setNumberOfPages(int numberOfPages) {
+    public void setNumberOfPages(Integer numberOfPages) {
         this.numberOfPages = numberOfPages;
     }
 
