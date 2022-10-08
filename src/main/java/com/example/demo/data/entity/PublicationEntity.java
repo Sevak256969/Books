@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class PublicationEntity {
     @Id
     @GeneratedValue( strategy= GenerationType.AUTO )
-//    @Column(name = "id")
+    // @Column(name = "id")
     private Integer id;
     private Integer publicationYear;
     private Integer rating;
@@ -24,31 +24,24 @@ public class PublicationEntity {
     public Integer getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
-
     public Integer getPublicationYear() {
         return publicationYear;
     }
-
     public void setPublicationYear(int publicationYear) {
         this.publicationYear = publicationYear;
     }
-
     public Integer getRating() {
         return rating;
     }
-
     public void setRating(int rating) {
         this.rating = rating;
     }
-
     public String getLanguage() {
         return language;
     }
-
     public void setLanguage(String language) {
         this.language = language;
     }
